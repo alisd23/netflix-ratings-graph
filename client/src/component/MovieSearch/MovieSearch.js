@@ -4,7 +4,9 @@ import { debounceTime, tap, catchError, filter, switchMap } from 'rxjs/operators
 
 import MovieSearchRow from '../MovieSearchRow';
 
-import './MovieSearch.css';
+import './MovieSearch.scss';
+
+const SEARCH_DEBOUNCE_TIME = 400;
 
 class MovieSearch extends Component {
   state = {
@@ -22,7 +24,7 @@ class MovieSearch extends Component {
     this.filterSearch$
       .pipe(
         filter(Boolean),
-        debounceTime(300),
+        debounceTime(SEARCH_DEBOUNCE_TIME),
         tap(this.onMoviesRequestPending),
         switchMap(filter => this
           .searchMovies(filter)
@@ -75,7 +77,11 @@ class MovieSearch extends Component {
     }
     // Only show loader if there are no movies currently displayed
     if (loading) {
-      return <div className="loading">Loading...</div>;
+      return (
+        <div className="loading">
+          <div className="spinner spinner-md"></div>
+        </div>
+      );
     }
   }
 
@@ -109,7 +115,10 @@ class MovieSearch extends Component {
 
   onFilterChange = (event) => {
     const newValue = event.target.value;
-    this.setState({ filter: newValue });
+    this.setState({
+      filter: newValue,
+      movies: !newValue ? null : this.state.movies
+    });
     this.filterSearch$.next(newValue);
   }
 

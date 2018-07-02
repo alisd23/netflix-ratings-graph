@@ -1,0 +1,39 @@
+@import 'style/variables';
+@import 'style/mixins';
+
+.movie-search-container {
+  width: 360px;
+  height: 480px;
+  border: 1px solid $grey-light;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -3px 3px 24px rgba(0, 0, 0, 0.2);
+
+  .loading, .error, .no-movies {
+    @include center;
+    
+    height: 120px;
+    text-align: center;
+    opacity: 0.6;
+  }
+}
+
+.movie-search-header {
+  padding: 24px 24px;
+  border-bottom: 2px solid $grey-lighter;
+
+  input {
+    padding: 9px 12px;
+    border: 1px solid $grey-light;
+    border-radius: 3px;
+    outline: none;
+    width: 100%;
+  }
+}
+
+.movie-search-list {
+  overflow: auto;
+  flex: 1;
+  padding: 9px 24px;
+}

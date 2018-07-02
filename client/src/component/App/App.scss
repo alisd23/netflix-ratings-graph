@@ -1,0 +1,15 @@
+@import 'style/mixins';
+
+.app {
+  @include cover;
+  display: flex;
+}
+
+.app-sidebar {
+  @include center;
+  padding: 20px;
+}
+
+.app-graph {
+  flex: 1;
+}

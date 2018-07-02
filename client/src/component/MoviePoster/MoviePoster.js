@@ -5,7 +5,7 @@ import { takeUntil, switchMap, tap, catchError } from 'rxjs/operators';
 
 import MovieSearch from '../MovieSearch';
 
-import './MoviePoster.css';
+import './MoviePoster.scss';
 
 const omdbUrl = 'http://www.omdbapi.com';
 const omdbApiKey = '8baff3e'
@@ -25,7 +25,12 @@ class MoviePoster extends Component {
       return <i className="material-icons md-sm">broken_image</i>;
     }
     if (imageSrc) {
-      return <img src={imageSrc} />;
+      return (
+        <img
+          src={imageSrc}
+          onError={this.onMovieError}
+        />
+      );
     }
   }
 

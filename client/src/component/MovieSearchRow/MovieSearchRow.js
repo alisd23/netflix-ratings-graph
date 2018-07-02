@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import MoviePoster from '../MoviePoster';
 
-import './MovieSearchRow.css';
+import './MovieSearchRow.scss';
 
 class MovieSearchRow extends Component {
   render() {
