@@ -1,0 +1,25 @@
+{
+  "name": "netflix-ratings-graph-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NodeJS server for netflix ratings graph application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "Neo4j"
+  ],
+  "author": "Ali Sheehan-Dare",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "neo4j-driver": "^1.6.1"
+  },
+  "devDependencies": {
+    "file-url": "^2.0.2",
+    "nodemon": "^1.17.5"
+  }
+}

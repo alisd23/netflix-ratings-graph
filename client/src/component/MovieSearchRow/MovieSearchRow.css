@@ -1,0 +1,29 @@
+.movie-search-row {
+  border-bottom: 1px solid #eee;
+  padding: 12px 12px;
+  display: flex;
+}
+
+.movie-search-row:hover {
+  /* color: #eee; */
+}
+
+.movie-search-row:last-child {
+  border-bottom: none;
+}
+
+.movie-search-row-left {
+  flex: 0 0 66px;
+  height: 90px;
+  position: relative;
+}
+
+.movie-search-row-right {
+  margin-left: 15px; 
+}
+
+.movie-search-row-year {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 6px;
+}

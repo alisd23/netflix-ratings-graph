@@ -1,0 +1,19 @@
+.app {
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.app-sidebar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-graph {
+  flex: 1;
+}

@@ -1,0 +1,1 @@
+CREATE CONSTRAINT ON (user:User) ASSERT user.id IS UNIQUE
