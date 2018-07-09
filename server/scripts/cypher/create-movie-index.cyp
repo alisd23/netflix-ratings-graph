@@ -1,1 +1,0 @@
-CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.id IS UNIQUE

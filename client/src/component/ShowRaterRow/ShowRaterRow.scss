@@ -1,28 +1,38 @@
 @import 'style/variables';
 
-.movie-search-row {
+.show-rater-row {
   border-bottom: 1px solid #eee;
   padding: 12px 12px;
   display: flex;
 
-  &:hover .movie-search-row-title {
+  &.disabled {
+    // pointer-events: none;
+    opacity: 0.4;
+  }
+  &:hover:not(.disabled) .show-rater-row-title {
     color: $primary;
   }
   &:last-child {
     border-bottom: none;
   }
 
-  .movie-search-row-left {
+  &-left {
     flex: 0 0 66px;
     height: 90px;
     position: relative;
   }
-  .movie-search-row-right {
+
+  &-right {
     margin-left: 15px; 
   }
-  .movie-search-row-year {
+
+  &-year {
     font-size: 12px;
     opacity: 0.6;
+    margin-top: 6px;
+  }
+
+  &-rating {
     margin-top: 6px;
   }
 }

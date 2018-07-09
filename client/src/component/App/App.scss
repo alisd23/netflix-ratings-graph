@@ -1,3 +1,4 @@
+@import 'style/variables';
 @import 'style/mixins';
 
 .app {
@@ -6,8 +7,15 @@
 }
 
 .app-sidebar {
-  @include center;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  width: 460px;
+
+  .app-title {
+    color: $primary;
+    margin-bottom: 60px;
+  }
 }
 
 .app-graph {

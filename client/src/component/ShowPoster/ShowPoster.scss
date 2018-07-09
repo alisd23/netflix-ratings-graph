@@ -1,7 +1,7 @@
 @import 'style/variables';
 @import 'style/mixins';
 
-.movie-poster {
+.show-poster {
   @include cover;
   @include center;
 
@@ -9,7 +9,7 @@
   color: rgba(#000, 0.3);
 }
 
-.movie-poster img {
+.show-poster img {
   object-fit: contain;
   max-width: 100%;
   max-height: 100%;

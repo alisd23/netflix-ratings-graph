@@ -4,16 +4,16 @@ const { executeCypherQuery } = require('../database/helpers');
 
 const app = express();
 
-app.get('/movies', searchMoviesHandler);
+app.get('/shows', searchShowsHandler);
 
-async function searchMoviesHandler(req, res) {
+async function searchShowsHandler(req, res) {
   const searchString = req.query.searchFilter;
   const searchRegex = `(?i).*${searchString}.*`;
   
   const query = `
-    MATCH (movie:Movie)
-    WHERE movie.title =~ {searchRegex}
-    RETURN movie.id as id, movie.title as title, movie.year as year
+    MATCH (show:Movie)
+    WHERE show.title =~ {searchRegex}
+    RETURN show.id as id, show.title as title, show.year as year
     LIMIT 20
   `;
 
@@ -29,9 +29,9 @@ async function searchMoviesHandler(req, res) {
     .status(200)
     .send(result.records
       .map(record => record.toObject())
-      .map(movie => ({
-        ...movie,
-        year: movie.year.toInt()
+      .map(show => ({
+        ...show,
+        year: show.year.toInt()
       }))
     );
 }

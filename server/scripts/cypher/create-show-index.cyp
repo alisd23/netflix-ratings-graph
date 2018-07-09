@@ -1,0 +1,1 @@
+CREATE CONSTRAINT ON (show:Movie) ASSERT show.id IS UNIQUE

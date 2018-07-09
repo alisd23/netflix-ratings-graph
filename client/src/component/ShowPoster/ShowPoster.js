@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Subject, empty, from } from 'rxjs';
 import { takeUntil, switchMap, tap, catchError } from 'rxjs/operators';
 
-import MovieSearch from '../MovieSearch';
+import ShowRatingSection from '../ShowRatingSection';
 
-import './MoviePoster.scss';
+import './ShowPoster.scss';
 
 const omdbUrl = 'http://www.omdbapi.com';
 const omdbApiKey = '8baff3e'
 
-class MoviePoster extends Component {
+class ShowPoster extends Component {
   unmounted$ = new Subject();
 
   state = {
@@ -28,7 +28,7 @@ class MoviePoster extends Component {
       return (
         <img
           src={imageSrc}
-          onError={this.onMovieError}
+          onError={this.onShowError}
         />
       );
     }
@@ -36,34 +36,34 @@ class MoviePoster extends Component {
 
   fetchPosterUrl = () => {
     const title = this.props.title.replace(/\s+/g, '+')
-    let movieSearchUrl = `${omdbUrl}?apiKey=${omdbApiKey}&t=${title}`;
+    let ShowRatingSectionUrl = `${omdbUrl}?apiKey=${omdbApiKey}&t=${title}`;
 
     if (this.props.year) {
-      movieSearchUrl += `&y=${this.props.year}`;
+      ShowRatingSectionUrl += `&y=${this.props.year}`;
     }
 
-    from(fetch(movieSearchUrl))
+    from(fetch(ShowRatingSectionUrl))
       .pipe(
         takeUntil(this.unmounted$),
         switchMap(res => from(res.json())),
-        tap(this.onMovieSuccess),
+        tap(this.onShowSuccess),
         catchError(() => {
-          this.onMovieError();
+          this.onShowError();
           return empty();
         })
       )
       .subscribe();
   }
 
-  onMovieSuccess = (movie) => {
-    if (movie && movie.Poster) {
-      this.setState({ imageSrc: movie.Poster });
+  onShowSuccess = (show) => {
+    if (show && show.Poster) {
+      this.setState({ imageSrc: show.Poster });
     } else {
       this.setState({ error: true });
     }
   }
 
-  onMovieError = () => {
+  onShowError = () => {
     this.setState({ error: true });
   }
 
@@ -73,7 +73,7 @@ class MoviePoster extends Component {
 
   render() {
     return (
-      <div className="movie-poster">
+      <div className="show-poster">
         {this.getImageFragment()}
       </div>
     );
@@ -88,9 +88,9 @@ class MoviePoster extends Component {
   }
 }
 
-MoviePoster.propTypes = {
+ShowPoster.propTypes = {
   title: PropTypes.string.isRequired,
   year: PropTypes.number
 }
 
-export default MoviePoster;
+export default ShowPoster;

@@ -7,11 +7,9 @@ const { executeQueryScript } = require('./utils/execute-query-script');
 const csvFileArg = process.argv[process.argv.length - 1];
 const csvFile = fileUrl(csvFileArg);
 
-console.log(csvFile);
-
 executeQueryScript([
   {
-    name: 'seed-movies',
+    name: 'seed-shows',
     params: { csvFile },
   }
 ]);
