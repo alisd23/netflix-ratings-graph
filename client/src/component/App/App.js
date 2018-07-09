@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 
-import ShowRatingSection from '../ShowRatingSection';
+import AddRatingSection from '../AddRatingSection';
+import RatingPresetSection from '../RatingPresetSection';
 import RatingList from '../RatingList';
 
 import './App.scss';
 
 class App extends Component {
-  onAddRating = () => {
-
-  }
-
   getCurrentUserFragment = () => (
     <div className="panel-section">
       <span className="panel-section-title">
@@ -21,12 +18,14 @@ class App extends Component {
 
   getRatingsPanelFragment = () => (
     <React.Fragment>
-      <div className="panel-section">
-        <h3 className="panel-section-title">Add Show Rating</h3>
-        <ShowRatingSection onAddRating={this.onAddRating} />
+      <div className="panel-section add-ratings-section">
+        <h4 className="panel-section-title">Add Show Ratings</h4>
+        <AddRatingSection />
+        <h5 className="panel-section-title rating-presets-title">Rating Presets</h5>
+        <RatingPresetSection  />
       </div>
       <div className="panel-section">
-        <h3 className="panel-section-title">Ratings</h3>
+        <h4 className="panel-section-title">Ratings</h4>
         <RatingList />
       </div>
     </React.Fragment>    
@@ -39,7 +38,7 @@ class App extends Component {
           <h1 className="app-title">
             Netflix Ratings Graph Demo
           </h1>
-          <div className="panel">
+          <div className="panel current-user-panel">
             {this.getCurrentUserFragment()}
           </div>
           <div className="panel">

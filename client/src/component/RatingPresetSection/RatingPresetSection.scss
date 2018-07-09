@@ -1,0 +1,23 @@
+@import 'style/variables';
+@import 'style/mixins';
+
+.rating-preset-section-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  .preset-pill {
+    $pill-height: 32px;
+    @include center;
+    cursor: pointer;
+    padding: 0 12px;
+    border-radius: $pill-height / 2;
+    height: $pill-height;
+    margin-right: 9px;
+    transition: transform 0.2s ease-out;
+    font-weight: bold;
+
+    &:hover {
+      transform: scale(1.14);
+    }
+  }
+}

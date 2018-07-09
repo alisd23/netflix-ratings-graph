@@ -9,7 +9,7 @@ import './RatingList.scss';
 
 class RatingList extends Component {
   getListFragment = () => {
-    const { ratings, updateRating } = this.props;    
+    const { ratings, updateRating, deleteRating } = this.props;    
 
     if (!ratings || ratings.length === 0) {
       return (
@@ -27,7 +27,14 @@ class RatingList extends Component {
         canEdit={true}
         currentRating={score}
         onRating={newScore => updateRating(show, newScore)}
-      />
+      >
+        <i
+          className="material-icons md-sm delete-rating"
+          onClick={() => deleteRating(show)}
+        >
+          cancel
+        </i>
+      </ShowRaterRow>
     ))
   }
 
@@ -38,16 +45,25 @@ class RatingList extends Component {
       </div>
     )
   }
+
+  componentDidMount() {
+    // Fetch initial ratings from the server
+    this.props.getRatings();
+  }
 }
 
 RatingList.propTypes = {
   updateRating: PropTypes.func.isRequired,
+  deleteRating: PropTypes.func.isRequired,
+  getRatings: PropTypes.func.isRequired,
   ratings: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default compose(
   inject(stores => ({
     updateRating: stores.ratingStore.updateRating,
+    deleteRating: stores.ratingStore.deleteRating,
+    getRatings: stores.ratingStore.getRatings,
     ratings: stores.ratingStore.ratings,
   }))
 )(RatingList);

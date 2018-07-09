@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 import ShowRater from '../ShowRater';
 
-import './ShowRatingSection.scss';
+import './AddRatingSection.scss';
 
-class ShowRatingSection extends Component {
+class AddRatingSection extends Component {
   render() {
     return (
       <div className="show-rating-section-container">
@@ -17,4 +17,4 @@ class ShowRatingSection extends Component {
   }
 }
 
-export default ShowRatingSection;
+export default AddRatingSection;

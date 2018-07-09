@@ -14,7 +14,23 @@
 
   .app-title {
     color: $primary;
-    margin-bottom: 60px;
+    margin-bottom: 51px;
+  }
+
+  .rating-presets-title {
+    margin-top: 12px;
+  }
+
+  .add-ratings-section {
+    flex: 0 0 auto;
+  }
+
+  .panel:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  .current-user-panel {
+    flex: 0 0 auto;
   }
 }
 

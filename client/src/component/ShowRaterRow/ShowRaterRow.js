@@ -9,7 +9,7 @@ import './ShowRaterRow.scss';
 
 class ShowRaterRow extends Component {
   render() {
-    const { title, year, onRating, canEdit, currentRating } = this.props;
+    const { title, year, onRating, canEdit, currentRating, children } = this.props;
 
     const rootClasses = className({
       'show-rater-row': true,
@@ -43,6 +43,13 @@ class ShowRaterRow extends Component {
             />
           </div>
         </div>
+        {
+          children && (
+            <div className="show-rater-row-actions">
+              {children}
+            </div>
+          )
+        }
       </div>
     );
   }
@@ -55,6 +62,10 @@ ShowRaterRow.propTypes = {
   canEdit: PropTypes.bool.isRequired,
   currentRating: PropTypes.number,
   onRating: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ])
 }
 
 export default ShowRaterRow;

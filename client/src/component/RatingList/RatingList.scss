@@ -4,10 +4,19 @@
 .rating-list-container {
   max-height: 400px;
   overflow: auto;
-}
+    
+  .rating-list-empty {
+    @include center;
+    height: 60px;
+    opacity: 0.6;
+  }
 
-.rating-list-empty {
-  @include center;
-  height: 60px;
-  opacity: 0.6;
+  .delete-rating {
+    color: $grey-light;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary;
+    }
+  }
 }

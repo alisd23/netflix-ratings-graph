@@ -6,7 +6,6 @@
   display: flex;
 
   &.disabled {
-    // pointer-events: none;
     opacity: 0.4;
   }
   &:hover:not(.disabled) .show-rater-row-title {
@@ -23,6 +22,7 @@
   }
 
   &-right {
+    flex: 1;
     margin-left: 15px; 
   }
 
@@ -34,5 +34,13 @@
 
   &-rating {
     margin-top: 6px;
+  }
+
+  &-actions {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6px;
   }
 }

@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   box-shadow: -4px 4px 22px $shadow-color;
-  margin-bottom: 30px;
 }
 
 .panel-section {
@@ -23,7 +22,7 @@
 
 .panel-section-title {
   margin-top: 0;
-  font-size: 14px;
+  // font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
 }
