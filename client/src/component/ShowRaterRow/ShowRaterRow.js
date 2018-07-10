@@ -12,23 +12,23 @@ class ShowRaterRow extends Component {
     const { title, year, onRating, canEdit, currentRating, children } = this.props;
 
     const rootClasses = className({
-      'show-rater-row': true,
+      'show-row': true,
       'disabled': !canEdit,
     });
 
     return (
       <div className={rootClasses}>
-        <div className="show-rater-row-left">
+        <div className="show-row-left">
           <ShowPoster
             title={title}
             year={year}
           />
         </div>
-        <div className="show-rater-row-right">
-          <div className="show-rater-row-title">
+        <div className="show-row-right">
+          <div className="show-row-title">
             <span>{title}</span>
           </div>
-          <div className="show-rater-row-year">
+          <div className="show-row-year">
             <span>{year}</span>
           </div>
           <div className="show-rater-row-rating">
@@ -45,7 +45,7 @@ class ShowRaterRow extends Component {
         </div>
         {
           children && (
-            <div className="show-rater-row-actions">
+            <div className="show-row-actions">
               {children}
             </div>
           )
@@ -56,7 +56,6 @@ class ShowRaterRow extends Component {
 }
 
 ShowRaterRow.propTypes = {
-  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   canEdit: PropTypes.bool.isRequired,

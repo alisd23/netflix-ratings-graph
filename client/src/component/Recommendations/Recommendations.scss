@@ -1,0 +1,65 @@
+@import 'style/variables';
+@import 'style/mixins';
+
+.recommendations-button-container {
+  @include center;
+  @include cover;
+
+  .recommendations-button {
+    $recommendation-button-height: 80px;
+
+    background-color: $primary;
+    cursor: pointer;
+    height: $recommendation-button-height;
+    padding: 0 28px;
+    color: $white;
+    border-radius: $recommendation-button-height / 2;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    text-transform: uppercase;
+    outline: none;
+
+    &:hover, &:active {
+      background-color: darken($primary, 4);
+    }
+  }
+}
+
+.recommendation-list-empty {
+  @include center;
+  flex-direction: column;
+  height: 400px;
+  max-height: 100%;
+
+  .spinner {
+    margin-bottom: 18px;
+  }
+}
+
+.recommendation-list-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.recommendation-list-toolbar {
+  display: flex;
+  justify-content: center;
+}
+
+.recommendation-reload {
+  $button-height: 40px;
+
+  height: $button-height;
+  border-radius: $button-height / 2;
+  cursor: pointer;
+  padding: 0 21px;
+  background-color: $grey-lighter;
+  outline: none;
+  border: none;
+  margin-bottom: 24px;
+
+  &:hover {
+    background-color: darken($grey-lighter, 5);
+  }
+}

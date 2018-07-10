@@ -1,5 +1,12 @@
+const fs = require('fs');
+const path = require('path');
+
 const neoDriver = require('../database/driver');
 const { executeCypherQuery } = require('../database/helpers');
+
+const recommendationsQuery = fs
+  .readFileSync(path.resolve(__dirname, '..', 'scripts', 'cypher', 'get-recommendations.cyp'))
+  .toString();
 
 /**
  * Converts a show record to an object with correct converted types
@@ -36,6 +43,30 @@ exports.searchShows = async function(searchString) {
 
   return {
     shows: result.records.map(record => mapShow(record.get('show')))
+  }
+}
+
+/**
+ * Gets show recommendations for the supplied user, returning the show objects and the
+ * 'recommendation score' assigned to it
+ * @param {string} userId 
+ */
+exports.getRecommendations = async function(userId) {
+  const query = recommendationsQuery;
+
+  const session = neoDriver.session();
+  const { error, result } = await executeCypherQuery(session, query, { userId });
+
+  if (error) {
+    return { error };
+  }
+
+  return {
+    recommendations: result.records
+      .map(record => ({
+        show: mapShow(record.get('candidate')),
+        score: record.get('score'),
+      }))
   }
 }
 

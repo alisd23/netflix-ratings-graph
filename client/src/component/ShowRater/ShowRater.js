@@ -77,7 +77,6 @@ class ShowRater extends Component {
         return (
           <ShowRaterRow
             key={show.id}
-            id={show.id}
             title={show.title}
             year={show.year}
             canEdit={!Boolean(currentRating)}

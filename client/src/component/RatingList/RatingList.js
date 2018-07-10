@@ -26,7 +26,7 @@ class RatingList extends Component {
             className="link-primary"
             onClick={loadRatings}
           >
-            Fetch ratings again
+            Try again
           </span>
         </div>
       )
@@ -41,7 +41,6 @@ class RatingList extends Component {
     return ratings.map(({ show, score }) => (
       <ShowRaterRow
         key={show.id}
-        id={show.id}
         title={show.title}
         year={show.year}
         canEdit={true}

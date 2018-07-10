@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Rating related requests
 export async function fetchRatings() {
   return axios.get(`/rating`);
 }
@@ -11,7 +12,7 @@ export async function deleteRating(showId) {
 export async function rateShow(showId, score) {
   return axios.put(
     `/rating/${showId}`,
-    { params: { score }}
+    { score }
   );
 }
 
@@ -21,3 +22,8 @@ export async function replaceRatings(ratings) {
     ratings
   );
 } 
+
+// Recommendation related requests
+export async function fetchRecommendations() {
+  return axios.get(`/recommendations`);
+}

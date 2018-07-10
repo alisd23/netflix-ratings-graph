@@ -1,0 +1,42 @@
+@import 'style/variables';
+
+.show-row {
+  border-bottom: 1px solid #eee;
+  padding: 12px 12px;
+  display: flex;
+
+  &.disabled {
+    opacity: 0.4;
+  }
+  &:hover:not(.disabled) .show-row-title {
+    color: $primary;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &-left {
+    flex: 0 0 66px;
+    height: 90px;
+    position: relative;
+  }
+
+  &-right {
+    flex: 1;
+    margin-left: 15px; 
+  }
+
+  &-year {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-top: 6px;
+  }
+
+  &-actions {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 6px;
+  }
+}

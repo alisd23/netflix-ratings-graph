@@ -11,6 +11,8 @@ app.use(bodyParser.json())
 // REST endpoints
 app.get('/shows', handlers.searchShowsHandler);
 
+app.get('/recommendations', handlers.getRecommendationsHandler);
+
 app.get('/rating', handlers.getRatingsHandler);
 app.put('/rating/:showId', handlers.rateShowHandler);
 app.delete('/rating/:showId', handlers.deleteRatingHandler);

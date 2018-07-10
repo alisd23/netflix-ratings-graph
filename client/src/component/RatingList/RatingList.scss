@@ -7,7 +7,7 @@
     
   .rating-list-empty {
     @include center;
-    flex-direction: center;
+    flex-direction: column;
     height: 60px;
     opacity: 0.6;
 

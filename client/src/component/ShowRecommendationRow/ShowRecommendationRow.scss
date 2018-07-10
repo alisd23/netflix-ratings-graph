@@ -1,0 +1,33 @@
+@import 'style/variables';
+
+.recommendation-score {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  max-width: 400px;
+
+  // Bar height variable
+  $bar-height: 4px;
+  $bar-radius: $bar-height / 2;
+
+  &-bar-wrapper {
+    position: relative;      
+    flex: 1 0 0;
+    height: $bar-height;
+    border-radius: $bar-radius;
+    background-color: $grey-lighter;
+  }
+
+  &-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: $bar-radius;
+  }
+
+  &-value {
+    font-weight: bold;
+    margin-left: 9px;
+  }
+}

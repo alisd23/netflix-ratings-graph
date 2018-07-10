@@ -1,0 +1,69 @@
+@import 'style/variables';
+@import 'style/mixins';
+
+.app-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  padding-left: 0;
+  padding-right: 40px;
+
+  .react-tabs__tab-list {
+    @include center;
+    padding: 0;
+    margin-bottom: 75px;
+  }
+
+  .react-tabs__tab {
+    $tab-height: 42px;
+
+    @include center;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 18px;
+    margin: 0 12px;
+    height: $tab-height;
+    border-radius: $tab-height / 2;
+    border: 1px solid $grey-light;
+    box-shadow: -2px 2px 12px $shadow-color;
+    white-space: nowrap;
+    outline: none;
+
+    &--selected {
+      background: $primary;
+      color: $white;
+    }
+  }
+
+  .react-tabs__tab-panel {
+    flex: 1 0 0;
+    position: relative;
+    overflow: auto;
+    
+    &:not(.react-tabs__tab-panel--selected) {
+      display: none;
+    }
+  }
+}
+
+@keyframes Spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.coming-soon {
+  @include center;
+
+  > h2 {
+    color: $grey-darker;
+    font-size: 28px;
+    animation: Spin 4s linear infinite;
+  }
+}

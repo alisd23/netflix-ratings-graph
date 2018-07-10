@@ -23,6 +23,23 @@ exports.searchShowsHandler = async function(req, res) {
 }
 
 /**
+ * Handler for the REST endpoint for generating show recommendations for the 
+ * current user
+ */
+exports.getRecommendationsHandler = async function(_req, res) {
+  const { error, recommendations } = await repository.getRecommendations(userId);
+
+  if (error) {
+    return res
+      .status(500)
+      .send(error.message);
+  }
+  return res
+    .status(200)
+    .send(recommendations);
+}
+
+/**
  * Handler for the REST endpoint to get all ratings for the current user
  */
 exports.getRatingsHandler = async function(_req, res) {
@@ -43,7 +60,7 @@ exports.getRatingsHandler = async function(_req, res) {
  */
 exports.rateShowHandler = async function(req, res) {
   const { showId } = req.params;
-  const { score } = req.query;
+  const { score } = req.body;
 
   const { error } = await repository.rateShow(showId, userId, score);
 

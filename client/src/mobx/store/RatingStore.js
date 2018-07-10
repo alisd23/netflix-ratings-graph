@@ -1,8 +1,8 @@
 import { observable, action, decorate } from 'mobx';
 
-import * as requests from './requests';
+import * as requests from '../requests';
 
-class ShowRatingStore {
+class RatingStore {
   ratings = [];
   ratingsLoading = false;
   ratingsError = null;
@@ -10,7 +10,7 @@ class ShowRatingStore {
   addRating = (show, score) => {
     // Optimistic UI update
     const newRating = { show, score };
-    this.ratings = [...this.ratings, newRating];
+    this.ratings = [newRating, ...this.ratings];
     
     // Fire and forget put rating request
     requests.rateShow(show.id, score);
@@ -75,7 +75,7 @@ class ShowRatingStore {
   }
 }
 
-export default decorate(ShowRatingStore, {
+export default decorate(RatingStore, {
   ratings: observable.ref,
   ratingsLoading: observable.ref,
   ratingsError: observable.ref,
@@ -83,6 +83,6 @@ export default decorate(ShowRatingStore, {
   updateRating: action,
   deleteRating: action,
   setRatings: action,
-  getRatings: action,
+  loadRatings: action,
   clearRatings: action,
 });
