@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { inject } from 'mobx-react';
 
+import compose from '../../util/compose';
 import AddRatingSection from '../AddRatingSection';
 import RatingPresetSection from '../RatingPresetSection';
 import RatingList from '../RatingList';
@@ -25,7 +28,15 @@ class App extends Component {
         <RatingPresetSection  />
       </div>
       <div className="panel-section">
-        <h4 className="panel-section-title">Ratings</h4>
+        <div className="ratings-panel-section-header">
+          <h4 className="panel-section-title">Ratings</h4>
+          <span
+            className="link-primary"
+            onClick={this.props.clearRatings}
+          >
+            <strong>Clear All</strong>
+          </span>
+        </div>
         <RatingList />
       </div>
     </React.Fragment>    
@@ -51,4 +62,13 @@ class App extends Component {
   }
 }
 
-export default App;
+
+App.propTypes = {
+  clearRatings: PropTypes.func.isRequired,
+}
+
+export default compose(
+  inject(stores => ({
+    clearRatings: stores.ratingStore.clearRatings,
+  }))
+)(App);

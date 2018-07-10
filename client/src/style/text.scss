@@ -3,3 +3,12 @@
 .text-primary {
   color: $primary;
 }
+
+.link-primary {
+  color: $grey-medium;
+  cursor: pointer;
+  
+  &:hover {
+    color: $primary;
+  }
+}

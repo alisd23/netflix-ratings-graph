@@ -3,35 +3,9 @@ import PropTypes from 'prop-types';
 import { inject } from 'mobx-react';
 
 import compose from '../../util/compose';
+import ratingPresets from './rating-presets'; 
 
 import './RatingPresetSection.scss';
-
-const ratingPresets = [
-  {
-    title: 'Comedy',
-    bgColor: '#F1D302',
-    textColor: '#222222',
-    ratings: [
-      // { id: '', score: 5 }
-    ]
-  },
-  {
-    title: 'Sci-fi',
-    bgColor: '#6096BA',
-    textColor: '#FFFFFF',
-    ratings: [
-      // { id: '', score: 5 }
-    ]
-  },
-  {
-    title: 'Horror',
-    bgColor: '#621708',
-    textColor: '#FFFFFF',
-    ratings: [
-      // { id: '', score: 5 }
-    ]
-  }
-]
 
 class RatingPresetSection extends Component {
   getPillStyle = (preset) => ({

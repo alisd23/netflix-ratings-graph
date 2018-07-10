@@ -9,8 +9,28 @@ import './RatingList.scss';
 
 class RatingList extends Component {
   getListFragment = () => {
-    const { ratings, updateRating, deleteRating } = this.props;    
+    const { ratings, ratingsLoading, ratingsError, updateRating, deleteRating, loadRatings } = this.props;    
 
+    if (ratingsLoading) {
+      return (
+        <div className="rating-list-empty">
+          <div className="spinner spinner-md"></div>
+        </div>
+      )
+    }
+    if (ratingsError) {
+      return (
+        <div className="rating-list-empty">
+          <span>{ratingsError}</span>
+          <span
+            className="link-primary"
+            onClick={loadRatings}
+          >
+            Fetch ratings again
+          </span>
+        </div>
+      )
+    }
     if (!ratings || ratings.length === 0) {
       return (
         <div className="rating-list-empty">
@@ -48,22 +68,26 @@ class RatingList extends Component {
 
   componentDidMount() {
     // Fetch initial ratings from the server
-    this.props.getRatings();
+    this.props.loadRatings();
   }
 }
 
 RatingList.propTypes = {
   updateRating: PropTypes.func.isRequired,
   deleteRating: PropTypes.func.isRequired,
-  getRatings: PropTypes.func.isRequired,
-  ratings: PropTypes.arrayOf(PropTypes.object).isRequired
+  loadRatings: PropTypes.func.isRequired,
+  ratings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  ratingsLoading: PropTypes.bool.isRequired,
+  ratingsError: PropTypes.string,
 }
 
 export default compose(
-  inject(stores => ({
-    updateRating: stores.ratingStore.updateRating,
-    deleteRating: stores.ratingStore.deleteRating,
-    getRatings: stores.ratingStore.getRatings,
-    ratings: stores.ratingStore.ratings,
+  inject(({ ratingStore }) => ({
+    updateRating: ratingStore.updateRating,
+    deleteRating: ratingStore.deleteRating,
+    loadRatings: ratingStore.loadRatings,
+    ratings: ratingStore.ratings,
+    ratingsLoading: ratingStore.ratingsLoading,
+    ratingsError: ratingStore.ratingsError,
   }))
 )(RatingList);

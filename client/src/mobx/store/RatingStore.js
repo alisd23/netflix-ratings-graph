@@ -1,20 +1,23 @@
 import { observable, action, decorate } from 'mobx';
 
-import { fetchRatings } from './requests';
+import * as requests from './requests';
 
 class ShowRatingStore {
   ratings = [];
+  ratingsLoading = false;
+  ratingsError = null;
 
   addRating = (show, score) => {
     // Optimistic UI update
-    // Call insert API
     const newRating = { show, score };
     this.ratings = [...this.ratings, newRating];
+    
+    // Fire and forget put rating request
+    requests.rateShow(show.id, score);
   }
 
   updateRating = (show, score) => {
     // Optimistic UI update
-    // Call update API
     const newRatings = [...this.ratings];
     const existingRatingIndex = newRatings.findIndex(r => r.show.id === show.id);
     const existingRating = newRatings[existingRatingIndex];
@@ -23,11 +26,13 @@ class ShowRatingStore {
       score
     }
     this.ratings = newRatings;
+    
+    // Fire and forget put rating request
+    requests.rateShow(show.id, score);
   }
 
   deleteRating = (show) => {
     // Optimistic UI update
-    // Call delete API
     const newRatings = [...this.ratings];
     const existingRatingIndex = newRatings.findIndex(r => r.show.id === show.id);
 
@@ -37,24 +42,47 @@ class ShowRatingStore {
 
     newRatings.splice(existingRatingIndex, 1);
     this.ratings = newRatings;
+    
+    // Fire and forget delete request
+    requests.deleteRating(show.id);
   }
 
-  setRatings = (ratings) => {
-    // Call API
-    // Reload ratings on success
+  setRatings = async (ratings) => {
+    this.ratingsLoading = true;
+    this.ratingsError = null;
+    try {
+      await requests.replaceRatings(ratings);
+    } finally {
+      this.loadRatings();
+    }
   }
 
-  getRatings = async () => {
-    const ratings = await fetchRatings();
-    this.ratings = ratings;
+  clearRatings = () => {
+    this.setRatings([]);
+  }
+
+  loadRatings = async () => {
+    this.ratingsLoading = true;
+    this.ratingsError = null;
+    try {
+      const response = await requests.fetchRatings();
+      this.ratings = response.data;
+    } catch (e) {
+      this.ratingsError = 'Could not fetch ratings';
+    } finally {
+      this.ratingsLoading = false;
+    }
   }
 }
 
 export default decorate(ShowRatingStore, {
   ratings: observable.ref,
+  ratingsLoading: observable.ref,
+  ratingsError: observable.ref,
   addRating: action,
   updateRating: action,
   deleteRating: action,
   setRatings: action,
   getRatings: action,
+  clearRatings: action,
 });

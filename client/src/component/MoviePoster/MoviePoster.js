@@ -28,6 +28,7 @@ class ShowPoster extends Component {
       return (
         <img
           src={imageSrc}
+          alt={this.props.title}
           onError={this.onShowError}
         />
       );

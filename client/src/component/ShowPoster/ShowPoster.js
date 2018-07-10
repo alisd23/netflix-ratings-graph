@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Subject, empty, from } from 'rxjs';
 import { takeUntil, switchMap, tap, catchError } from 'rxjs/operators';
 
-import AddRatingSection from '../AddRatingSection';
-
 import './ShowPoster.scss';
 
 const omdbUrl = 'http://www.omdbapi.com';
@@ -56,7 +54,7 @@ class ShowPoster extends Component {
   }
 
   onShowSuccess = (show) => {
-    if (show && show.Poster) {
+    if (show && show.Poster && show.Poster !== 'N/A') {
       this.setState({ imageSrc: show.Poster });
     } else {
       this.setState({ error: true });

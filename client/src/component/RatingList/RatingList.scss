@@ -7,8 +7,13 @@
     
   .rating-list-empty {
     @include center;
+    flex-direction: center;
     height: 60px;
     opacity: 0.6;
+
+    .link-primary {
+      margin-top: 9px;
+    }
   }
 
   .delete-rating {
